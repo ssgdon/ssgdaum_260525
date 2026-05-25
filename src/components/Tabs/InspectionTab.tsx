@@ -73,40 +73,40 @@ export default function InspectionTab({ userProfile }: { userProfile: UserProfil
   ];
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6 pb-20 tracking-tight">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-7 pb-24 tracking-tight">
       {/* Toggle */}
       <div className="flex bg-gray-100/80 rounded-full p-1.5 border border-gray-200/50 my-2">
-         <button 
-           className={`flex-1 py-3 text-center rounded-full text-[15px] font-extrabold transition-all duration-300 ${meatType === 'beef' ? 'bg-white shadow-sm text-seul-primary' : 'text-gray-500 hover:text-gray-700'}`}
+         <button
+           className={`flex-1 py-3.5 text-center rounded-full text-[17px] font-extrabold transition-all duration-300 ${meatType === 'beef' ? 'bg-white shadow-sm text-seul-primary' : 'text-gray-500 hover:text-gray-700'}`}
            onClick={() => setMeatType('beef')}
          >한우</button>
-         <button 
-           className={`flex-1 py-3 text-center rounded-full text-[15px] font-extrabold transition-all duration-300 ${meatType === 'pork' ? 'bg-white shadow-sm text-seul-primary' : 'text-gray-500 hover:text-gray-700'}`}
+         <button
+           className={`flex-1 py-3.5 text-center rounded-full text-[17px] font-extrabold transition-all duration-300 ${meatType === 'pork' ? 'bg-white shadow-sm text-seul-primary' : 'text-gray-500 hover:text-gray-700'}`}
            onClick={() => setMeatType('pork')}
          >한돈</button>
       </div>
 
       {/* 이미지 1: 검사 항목 요약 카드 */}
-      <div className="bg-white rounded-[24px] p-6 shadow-sm border border-gray-100">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-[18px] font-extrabold text-gray-900">검사 항목</h2>
-          <span className="text-[13px] font-bold text-gray-500">총 84종</span>
+      <div className="bg-white rounded-[28px] p-7 shadow-sm border border-gray-100">
+        <div className="flex justify-between items-center mb-7">
+          <h2 className="text-[22px] font-extrabold text-gray-900">검사 항목</h2>
+          <span className="text-[14px] font-bold text-gray-500">총 84종</span>
         </div>
         <div className="flex items-center gap-7">
-          <div className="relative w-[104px] h-[104px] shrink-0 flex flex-col items-center justify-center rounded-full border-[8px] border-seul-primary shadow-[inset_0_2px_10px_rgba(45,95,63,0.1)] bg-[#F4fbf6]">
-            <span className="text-[34px] font-black text-seul-primary leading-none mt-2">84</span>
-            <span className="text-[12px] font-extrabold text-seul-primary mt-1">/ 84 통과</span>
+          <div className="relative w-[120px] h-[120px] shrink-0 flex flex-col items-center justify-center rounded-full border-[9px] border-seul-primary shadow-[inset_0_2px_10px_rgba(45,95,63,0.1)] bg-[#F4fbf6]">
+            <span className="text-[42px] font-black text-seul-primary leading-none mt-2">84</span>
+            <span className="text-[13px] font-extrabold text-seul-primary mt-1">/ 84 통과</span>
           </div>
-          <div className="flex-1 space-y-3.5">
+          <div className="flex-1 space-y-4">
             {[
               { label: '잔류 항생제', count: '72/72' },
               { label: '중금속', count: '12/12' },
               { label: '농약·살충제', count: '18/18' },
               { label: '호르몬', count: '4/4' },
             ].map(item => (
-              <div key={item.label} className="flex justify-between items-center text-[14px]">
+              <div key={item.label} className="flex justify-between items-center text-[15.5px]">
                 <span className="font-bold text-gray-700">{item.label}</span>
-                <span className="font-extrabold text-gray-900 flex items-center">{item.count} <Check className="ml-1 w-[14px] h-[14px] text-seul-success" strokeWidth={4}/></span>
+                <span className="font-extrabold text-gray-900 flex items-center">{item.count} <Check className="ml-1 w-[16px] h-[16px] text-seul-success" strokeWidth={4}/></span>
               </div>
             ))}
           </div>
@@ -115,31 +115,31 @@ export default function InspectionTab({ userProfile }: { userProfile: UserProfil
 
       {/* 이미지 1: 중요한 항목 섹션 */}
       <div>
-        <div className="mb-4 mt-8 flex justify-between items-end px-1">
+        <div className="mb-5 mt-10 flex justify-between items-end px-1">
           <div>
-            <h3 className="text-[19px] font-extrabold text-gray-900 leading-tight flex items-center gap-1.5">
-              <AlertTriangle className="w-[20px] h-[20px] text-seul-primary" strokeWidth={2.5}/>
+            <h3 className="text-[22px] font-extrabold text-gray-900 leading-tight flex items-center gap-2">
+              <AlertTriangle className="w-[24px] h-[24px] text-seul-primary" strokeWidth={2.5}/>
               {isPregnant ? '임산부에게 중요한 항목' : '일반에게 중요한 항목'}
             </h3>
-            <p className="text-[13px] text-gray-500 mt-1.5 font-medium ml-6">
+            <p className="text-[14px] text-gray-500 mt-2 font-medium ml-8">
               {isPregnant ? `${userProfile.months}개월차 임산부 맞춤 표시` : '일반 기준 · 로그인 시 맞춤 표시'}
             </p>
           </div>
-          <button className="text-[13px] font-extrabold text-seul-primary bg-seul-primary/10 hover:bg-seul-primary/20 px-3 py-1.5 rounded-lg transition-colors">
+          <button className="text-[13.5px] font-extrabold text-seul-primary bg-seul-primary/10 hover:bg-seul-primary/20 px-3.5 py-2 rounded-xl transition-colors shrink-0">
             맞춤 설정
           </button>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
            {itemsData.map(item => (
-              <div key={item.id} className="bg-white rounded-[24px] p-6 shadow-[0_2px_16px_rgba(45,95,63,0.04)] border border-seul-primary/10 transition-all">
-                  <div className="flex items-center gap-2.5 mb-2">
-                      <span className="px-2.5 py-1 rounded-[8px] text-[12px] font-extrabold bg-[#F0F5F2] text-seul-primary border border-seul-primary/5">
+              <div key={item.id} className="bg-white rounded-[28px] p-7 shadow-[0_2px_16px_rgba(45,95,63,0.04)] border border-seul-primary/10 transition-all">
+                  <div className="flex items-center gap-2.5 mb-2 flex-wrap">
+                      <span className="px-3 py-1.5 rounded-[10px] text-[13px] font-extrabold bg-[#F0F5F2] text-seul-primary border border-seul-primary/5">
                           {item.category}
                       </span>
-                      <h4 className="text-[18px] font-extrabold text-gray-900">{item.title}</h4>
+                      <h4 className="text-[21px] font-extrabold text-gray-900">{item.title}</h4>
                       {item.tag && (
-                          <span className="px-2.5 py-1 rounded-[8px] text-[12px] font-extrabold bg-[#E6F6ED] text-[#1D7B43] flex items-center leading-none tracking-tight">
+                          <span className="px-3 py-1.5 rounded-[10px] text-[13px] font-extrabold bg-[#E6F6ED] text-[#1D7B43] flex items-center leading-none tracking-tight">
                               {item.tag}
                           </span>
                       )}
@@ -163,8 +163,8 @@ export default function InspectionTab({ userProfile }: { userProfile: UserProfil
                       </div>
                   </div>
 
-                  <div className="mt-7 pt-5 border-t border-gray-50 flex items-start gap-2.5 text-[14px] text-gray-700 leading-relaxed font-medium">
-                      <span className="text-seul-accent text-[18px] leading-none shrink-0 translate-y-[1px]">💡</span>
+                  <div className="mt-7 pt-5 border-t border-gray-50 flex items-start gap-2.5 text-[15.5px] text-gray-700 leading-relaxed font-medium">
+                      <span className="text-seul-accent text-[20px] leading-none shrink-0 translate-y-[1px]">💡</span>
                       <p>{item.copyElement}</p>
                   </div>
               </div>
@@ -173,29 +173,29 @@ export default function InspectionTab({ userProfile }: { userProfile: UserProfil
       </div>
 
       {/* 이미지 2: 카테고리별 전체 결과 그리드 */}
-      <div className="mt-10 mb-4 px-1">
-        <h3 className="text-[19px] font-extrabold text-gray-900">카테고리별 전체 결과</h3>
+      <div className="mt-12 mb-5 px-1">
+        <h3 className="text-[22px] font-extrabold text-gray-900">카테고리별 전체 결과</h3>
       </div>
-      <div className="grid grid-cols-2 gap-3 pb-6">
+      <div className="grid grid-cols-2 gap-4 pb-8">
         {[
-          { cat: '잔류 항생제', count: 72, icon: <TestTube className="w-5 h-5"/>, color: 'text-indigo-500', bg: 'bg-indigo-50' },
-          { cat: '중금속', count: 12, icon: <Hexagon className="w-5 h-5"/>, color: 'text-orange-500', bg: 'bg-orange-50' },
-          { cat: '농약·살충제', count: 18, icon: <Sprout className="w-5 h-5"/>, color: 'text-seul-success', bg: 'bg-green-50' },
-          { cat: '호르몬', count: 4, icon: <Dna className="w-5 h-5"/>, color: 'text-rose-500', bg: 'bg-rose-50' },
+          { cat: '잔류 항생제', count: 72, icon: <TestTube className="w-7 h-7"/>, color: 'text-indigo-500', bg: 'bg-indigo-50' },
+          { cat: '중금속', count: 12, icon: <Hexagon className="w-7 h-7"/>, color: 'text-orange-500', bg: 'bg-orange-50' },
+          { cat: '농약·살충제', count: 18, icon: <Sprout className="w-7 h-7"/>, color: 'text-seul-success', bg: 'bg-green-50' },
+          { cat: '호르몬', count: 4, icon: <Dna className="w-7 h-7"/>, color: 'text-rose-500', bg: 'bg-rose-50' },
         ].map((item) => (
-          <div key={item.cat} className="bg-white rounded-[24px] p-5 shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-100 flex flex-col justify-between aspect-[1.3/1] cursor-pointer hover:border-seul-primary/40 hover:shadow-md transition-all group relative overflow-hidden">
-            <div className={`absolute -right-6 -top-6 w-[100px] h-[100px] rounded-full ${item.bg} opacity-50 block group-hover:scale-125 transition-transform duration-500`}></div>
-            <div className="relative z-10 flex items-start justify-between mb-3">
-               <div className={`p-2.5 rounded-[12px] ${item.bg} ${item.color} shadow-sm`}>
+          <div key={item.cat} className="bg-white rounded-[26px] p-6 shadow-[0_4px_15px_rgba(0,0,0,0.04)] border border-gray-100 flex flex-col justify-between aspect-[1.05/1] cursor-pointer hover:border-seul-primary/40 hover:shadow-md transition-all group relative overflow-hidden">
+            <div className={`absolute -right-6 -top-6 w-[120px] h-[120px] rounded-full ${item.bg} opacity-50 block group-hover:scale-125 transition-transform duration-500`}></div>
+            <div className="relative z-10 flex items-start justify-between mb-4">
+               <div className={`p-3.5 rounded-[16px] ${item.bg} ${item.color} shadow-sm`}>
                   {item.icon}
                </div>
-               <span className="text-[12px] font-bold text-gray-500 bg-gray-100 px-2.5 py-1 rounded-md">{item.count}종</span>
+               <span className="text-[13px] font-extrabold text-gray-600 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow-sm">{item.count}종</span>
             </div>
             <div className="relative z-10">
-              <h4 className="font-extrabold text-[15px] text-gray-900 mb-1 leading-tight">{item.cat}</h4>
-              <div className="flex items-center gap-1 mt-2.5">
-                <span className="text-[13.5px] font-extrabold text-seul-primary">모두 통과</span>
-                <ChevronRight className="w-[16px] h-[16px] text-seul-primary group-hover:translate-x-0.5 transition-transform" strokeWidth={2.5}/>
+              <h4 className="font-extrabold text-[18px] text-gray-900 mb-1.5 leading-tight">{item.cat}</h4>
+              <div className="flex items-center gap-1 mt-3">
+                <span className="text-[15px] font-extrabold text-seul-primary">모두 통과</span>
+                <ChevronRight className="w-[18px] h-[18px] text-seul-primary group-hover:translate-x-0.5 transition-transform" strokeWidth={2.5}/>
               </div>
             </div>
           </div>
