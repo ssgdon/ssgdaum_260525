@@ -37,46 +37,49 @@ export default function ForMeTab({ userProfile }: { userProfile: UserProfile }) 
          </ul>
        </div>
 
-       <div className="bg-seul-bg rounded-[28px] p-7 border border-seul-accent/10">
-         <h3 className="font-extrabold text-gray-900 flex items-center gap-2.5 mb-6 text-[22px]">
+       {/* 섹션: 나에게 맞춘 스마트 추천 (외곽 카드 제거 — 페이지 폭 전체 활용) */}
+       <div>
+         <h3 className="font-extrabold text-gray-900 flex items-center gap-2.5 mb-5 text-[22px] px-1">
            <span className="text-[24px]">💡</span> 나에게 맞춘 스마트 추천
          </h3>
 
-         <div className="bg-white rounded-[26px] p-6 flex gap-4 shadow-sm border border-gray-100 mb-7 relative overflow-hidden">
-           <div className="absolute top-0 right-0 w-32 h-32 bg-[#E6F6ED] rounded-full blur-3xl transform translate-x-10 -translate-y-10"></div>
-           <div className="w-14 h-14 rounded-full bg-gray-200 shrink-0 overflow-hidden border-[3px] border-white shadow-sm relative z-10">
+         {/* 영양사 코멘트 카드 — 단일 카드, 페이지 폭 전체 */}
+         <div className="bg-seul-bg rounded-[28px] p-7 flex gap-5 border border-seul-accent/10 mb-5 relative overflow-hidden">
+           <div className="absolute top-0 right-0 w-40 h-40 bg-[#E6F6ED] rounded-full blur-3xl transform translate-x-12 -translate-y-12"></div>
+           <div className="w-16 h-16 rounded-full bg-white shrink-0 overflow-hidden border-[3px] border-white shadow-md relative z-10">
              <img src="/images/nutritionist.png" alt="영양사" className="w-full h-full object-cover" />
            </div>
-           <div className="pt-0.5 flex-1 relative z-10">
-             <p className="font-extrabold text-[15px] text-seul-primary mb-3 flex items-center gap-1">🧑‍⚕️ 김지연 전담 영양사</p>
+           <div className="pt-0.5 flex-1 relative z-10 min-w-0">
+             <p className="font-extrabold text-[15.5px] text-seul-primary mb-3 flex items-center gap-1">🧑‍⚕️ 김지연 전담 영양사</p>
              <p className="text-[16px] font-medium text-gray-800 leading-relaxed tracking-tight">
-               "임신 중기에는 <span className="font-extrabold text-[#18A049] bg-[#E6F6ED] px-1.5 py-0.5 rounded-md">태아의 골격이 형성</span>되고 <span className="font-extrabold text-[#18A049] bg-[#E6F6ED] px-1.5 py-0.5 rounded-md">혈액량이 급증</span>하는 시기예요.<br/><br/>
+               "임신 중기에는 <span className="font-extrabold text-[#18A049] bg-white px-1.5 py-0.5 rounded-md">태아의 골격이 형성</span>되고 <span className="font-extrabold text-[#18A049] bg-white px-1.5 py-0.5 rounded-md">혈액량이 급증</span>하는 시기예요.<br/><br/>
                그래서 <span className="font-extrabold text-gray-900">철분과 단백질 보충</span>이 무엇보다 중요하답니다. 기운을 돋우고 영양을 가득 채울 수 있도록, 뼈 건강과 철분 보충에 특히 좋은 <span className="font-extrabold text-seul-primary">한우 안심곰탕</span>을 추천해 드릴게요!"
              </p>
            </div>
          </div>
 
-         <div className="grid grid-cols-2 gap-4 mb-3">
+         {/* 추천 상품 2종 — 페이지 폭 전체 활용 */}
+         <div className="grid grid-cols-2 gap-4">
             <div className="bg-white rounded-[22px] shadow-[0_4px_15px_rgba(0,0,0,0.04)] overflow-hidden border border-gray-100 hover:border-seul-primary/40 transition-all cursor-pointer">
-               <div className="h-32 bg-gray-100 flex items-center justify-center p-2 relative">
+               <div className="h-36 bg-gray-100 flex items-center justify-center p-2 relative">
                  <img src="/images/product-soup-bone.png" alt="Soup" className="w-full h-full object-cover rounded-xl" />
-                 <div className="absolute top-2 left-2 bg-white/95 backdrop-blur-md text-[11px] font-extrabold px-2 py-0.5 rounded text-seul-primary shadow-sm">영양만점</div>
+                 <div className="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-md text-[11.5px] font-extrabold px-2 py-1 rounded text-seul-primary shadow-sm">영양만점</div>
                </div>
                <div className="p-4">
                  <p className="text-[12px] font-extrabold text-gray-400 mb-2">철분·단백질 듬뿍</p>
-                 <p className="text-[16px] font-extrabold text-gray-900 leading-tight mb-2.5 min-h-[44px]">100% 한우<br/>안심 곰탕</p>
-                 <p className="text-[17px] font-extrabold text-seul-primary">32,000원</p>
+                 <p className="text-[16.5px] font-extrabold text-gray-900 leading-tight mb-2.5 min-h-[46px]">100% 한우<br/>안심 곰탕</p>
+                 <p className="text-[17.5px] font-extrabold text-seul-primary">32,000원</p>
                </div>
             </div>
             <div className="bg-white rounded-[22px] shadow-[0_4px_15px_rgba(0,0,0,0.04)] overflow-hidden border border-gray-100 hover:border-seul-primary/40 transition-all cursor-pointer">
-               <div className="h-32 bg-gray-100 flex items-center justify-center p-2 relative">
+               <div className="h-36 bg-gray-100 flex items-center justify-center p-2 relative">
                  <img src="/images/product-tenderloin.png" alt="Meat" className="w-full h-full object-cover rounded-xl" />
-                 <div className="absolute top-2 left-2 bg-white/95 backdrop-blur-md text-[11px] font-extrabold px-2 py-0.5 rounded text-seul-primary shadow-sm">철분흡수</div>
+                 <div className="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-md text-[11.5px] font-extrabold px-2 py-1 rounded text-seul-primary shadow-sm">철분흡수</div>
                </div>
                <div className="p-4">
                  <p className="text-[12px] font-extrabold text-gray-400 mb-2">입덧 완화·기력 회복</p>
-                 <p className="text-[16px] font-extrabold text-gray-900 leading-tight mb-2.5 min-h-[44px]">구이용 무항생제<br/>한우 안심 300g</p>
-                 <p className="text-[17px] font-extrabold text-seul-primary">45,000원</p>
+                 <p className="text-[16.5px] font-extrabold text-gray-900 leading-tight mb-2.5 min-h-[46px]">구이용 무항생제<br/>한우 안심 300g</p>
+                 <p className="text-[17.5px] font-extrabold text-seul-primary">45,000원</p>
                </div>
             </div>
          </div>
