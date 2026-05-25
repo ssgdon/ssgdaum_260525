@@ -3,9 +3,9 @@ import { UserProfile } from '../../types';
 import { Check, ChevronRight, TestTube, Hexagon, Sprout, Dna, AlertTriangle } from 'lucide-react';
 import { motion } from 'motion/react';
 
-export default function InspectionTab({ userProfile }: { userProfile: UserProfile | null }) {
+export default function InspectionTab({ userProfile }: { userProfile: UserProfile }) {
   const [meatType, setMeatType] = useState<'beef'|'pork'>('beef');
-  const isPregnant = userProfile?.status === 'pregnant';
+  const isPregnant = userProfile.status === 'pregnant';
 
   const itemsData = [
      {

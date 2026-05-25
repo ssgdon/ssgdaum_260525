@@ -1,100 +1,8 @@
-import { useState } from 'react';
 import { UserProfile } from '../../types';
-import { MessageCircle, ShieldCheck, CheckCircle, AlertTriangle } from 'lucide-react';
+import { CheckCircle, AlertTriangle } from 'lucide-react';
 import { motion } from 'motion/react';
 
-export default function ForMeTab({ userProfile, setUserProfile }: { userProfile: UserProfile | null, setUserProfile: (p: UserProfile) => void }) {
-  const [onboardingStep, setOnboardingStep] = useState(0);
-
-  if (!userProfile) {
-    if (onboardingStep === 0) {
-      return (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col items-center justify-center min-h-[60vh] px-5 text-center tracking-tight">
-           <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6">
-             <ShieldCheck className="w-8 h-8 text-seul-primary" />
-           </div>
-           <h2 className="text-[22px] font-extrabold mb-3 text-gray-900">로그인이 필요합니다</h2>
-           <p className="text-gray-500 mb-10 text-[15px] leading-relaxed">당신의 상태에 맞춘 성분 영향도 분석과<br/>가장 안전한 섭취 가이드를 받아보세요.</p>
-           
-           <div className="w-full space-y-3">
-               <button onClick={() => setOnboardingStep(1)} className="w-full bg-[#FEE500] text-black font-extrabold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-[#FADC00] transition-colors shadow-sm text-[15px]">
-                 <MessageCircle className="w-5 h-5" />
-                 카카오톡으로 시작하기
-               </button>
-               <button onClick={() => setOnboardingStep(1)} className="w-full bg-[#03C75A] text-white font-extrabold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-[#02b350] transition-colors shadow-sm text-[15px]">
-                 <span className="font-bold italic text-lg px-2 text-white">N</span>
-                 네이버로 시작하기
-               </button>
-           </div>
-        </motion.div>
-      )
-    }
-
-    if (onboardingStep === 1) {
-       return (
-         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="py-8 px-4">
-            <h2 className="text-2xl font-bold mb-6 text-gray-900">김예지님, 환영합니다 👋</h2>
-            <div className="bg-white rounded-2xl p-6 mb-8 shadow-sm border border-gray-100">
-              <h3 className="text-sm font-bold text-gray-400 mb-5">간편인증으로 등록된 정보</h3>
-              <ul className="space-y-4">
-                 <li className="flex justify-between items-center"><span className="text-gray-500 text-sm">이름</span><span className="font-bold text-gray-900">김예지</span></li>
-                 <li className="flex justify-between items-center"><span className="text-gray-500 text-sm">성별</span><span className="font-bold text-gray-900">여성</span></li>
-                 <li className="flex justify-between items-center"><span className="text-gray-500 text-sm">연령</span><span className="font-bold text-gray-900">32세</span></li>
-              </ul>
-            </div>
-            <p className="text-center font-bold text-gray-900 mb-8">이 정보를 프로필로 사용하시겠습니까?</p>
-            <div className="flex gap-3">
-               <button onClick={() => setOnboardingStep(2)} className="flex-1 bg-seul-primary text-white py-4 rounded-xl font-bold shadow-sm">예, 사용합니다</button>
-               <button onClick={() => setOnboardingStep(0)} className="flex-1 bg-gray-100 text-gray-500 py-4 rounded-xl font-bold">아니오</button>
-            </div>
-         </motion.div>
-       )
-    }
-
-    if (onboardingStep === 2) {
-       return (
-         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="py-6 px-4">
-            <div className="bg-seul-bg/50 p-4 rounded-xl mb-6 inline-block">
-                <span className="text-3xl">🏥</span>
-            </div>
-            <h2 className="text-2xl font-bold mb-4 text-gray-900 leading-tight">산부인과 방문 이력이<br/>확인되었습니다.</h2>
-            <p className="text-gray-500 mb-10 text-sm leading-relaxed">현재 임신 중이신가요? 상황에 맞게 유해물질 기준을 훨씬 더 보수적이고 안전하게 적용합니다.</p>
-            <div className="space-y-3">
-               <button onClick={() => setOnboardingStep(3)} className="w-full bg-white border-2 border-seul-primary/20 hover:border-seul-primary text-seul-primary py-5 rounded-2xl font-bold text-lg transition-colors shadow-sm text-left px-6">네, 임신 중입니다 👶</button>
-               <button onClick={() => {
-                   setUserProfile({ name: '김예지', gender: 'female', age: 32, status: 'none' });
-               }} className="w-full bg-gray-50 text-gray-500 py-4 rounded-2xl font-medium transition-colors">아니요</button>
-            </div>
-         </motion.div>
-       )
-    }
-
-    if (onboardingStep === 3) {
-       return (
-         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="py-6 px-5 tracking-tight">
-            <h2 className="text-[22px] font-extrabold mb-4 text-gray-900">임신 몇 개월차이신가요?</h2>
-            <p className="text-gray-500 mb-8 text-[15px]">주수별 필수 영양소와 피해야 할 성분을 맞춤 분석해 드립니다.</p>
-            <div className="grid grid-cols-1 gap-3">
-               {[
-                 { label: '임신 초기', range: '1-3개월', m: 2 },
-                 { label: '임신 중기', range: '4-6개월', m: 5 },
-                 { label: '임신 후기', range: '7-9개월', m: 8 },
-               ].map(opt => (
-                 <button key={opt.label} onClick={() => {
-                   setUserProfile({ name: '김예지', gender: 'female', age: 32, status: 'pregnant', months: opt.m });
-                 }} className="bg-white border-[1.5px] border-gray-100 py-5 px-6 rounded-2xl text-left flex justify-between items-center hover:border-seul-primary transition-all shadow-sm">
-                    <span className="font-extrabold text-gray-900 text-lg">{opt.label}</span>
-                    <span className="text-gray-400 text-[15px] font-medium">{opt.range}</span>
-                 </button>
-               ))}
-            </div>
-         </motion.div>
-       )
-    }
-
-  }
-
-  // Logged in UI
+export default function ForMeTab({ userProfile }: { userProfile: UserProfile }) {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6 pb-20 tracking-tight">
        <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex items-center justify-between">
@@ -104,8 +12,8 @@ export default function ForMeTab({ userProfile, setUserProfile }: { userProfile:
               현재 상태: {userProfile.status === 'pregnant' ? `임산부 (${userProfile.months}개월차)` : '일반'}
             </p>
           </div>
-          <div className="w-14 h-14 bg-seul-bg rounded-full overflow-hidden border-2 border-white shadow-sm flex items-center justify-center">
-             <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Felix&backgroundColor=FAF7F2" alt="avatar" className="w-10 h-10" />
+          <div className="w-14 h-14 bg-seul-bg rounded-full overflow-hidden border-2 border-white shadow-sm">
+             <img src="/images/user-avatar.png" alt="김예지" className="w-full h-full object-cover" />
           </div>
        </div>
 
@@ -137,7 +45,7 @@ export default function ForMeTab({ userProfile, setUserProfile }: { userProfile:
          <div className="bg-white rounded-[24px] p-5 flex gap-4 shadow-sm border border-gray-100 mb-6 relative overflow-hidden">
            <div className="absolute top-0 right-0 w-32 h-32 bg-[#E6F6ED] rounded-full blur-3xl transform translate-x-10 -translate-y-10"></div>
            <div className="w-12 h-12 rounded-full bg-gray-200 shrink-0 overflow-hidden border-2 border-white shadow-sm relative z-10">
-             <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop" alt="영양사" />
+             <img src="/images/nutritionist.png" alt="영양사" className="w-full h-full object-cover" />
            </div>
            <div className="pt-0.5 flex-1 relative z-10">
              <p className="font-extrabold text-[14px] text-seul-primary mb-2.5 flex items-center gap-1">🧑‍⚕️ 김지연 전담 영양사</p>
@@ -151,7 +59,7 @@ export default function ForMeTab({ userProfile, setUserProfile }: { userProfile:
          <div className="grid grid-cols-2 gap-4 mb-3">
             <div className="bg-white rounded-[20px] shadow-[0_4px_15px_rgba(0,0,0,0.03)] overflow-hidden border border-gray-100 hover:border-seul-primary/40 transition-all cursor-pointer">
                <div className="h-28 bg-gray-100 flex items-center justify-center p-2 relative">
-                 <img src="https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=200&auto=format&fit=crop" alt="Soup" className="w-full h-full object-cover rounded-xl" />
+                 <img src="/images/product-soup-bone.png" alt="Soup" className="w-full h-full object-cover rounded-xl" />
                  <div className="absolute top-2 left-2 bg-white/95 backdrop-blur-md text-[10px] font-extrabold px-2 py-0.5 rounded text-seul-primary shadow-sm">영양만점</div>
                </div>
                <div className="p-4">
@@ -162,7 +70,7 @@ export default function ForMeTab({ userProfile, setUserProfile }: { userProfile:
             </div>
             <div className="bg-white rounded-[20px] shadow-[0_4px_15px_rgba(0,0,0,0.03)] overflow-hidden border border-gray-100 hover:border-seul-primary/40 transition-all cursor-pointer">
                <div className="h-28 bg-gray-100 flex items-center justify-center p-2 relative">
-                 <img src="https://images.unsplash.com/photo-1603048297172-c92544798d5e?q=80&w=200&auto=format&fit=crop" alt="Meat" className="w-full h-full object-cover rounded-xl" />
+                 <img src="/images/product-tenderloin.png" alt="Meat" className="w-full h-full object-cover rounded-xl" />
                  <div className="absolute top-2 left-2 bg-white/95 backdrop-blur-md text-[10px] font-extrabold px-2 py-0.5 rounded text-seul-primary shadow-sm">철분흡수</div>
                </div>
                <div className="p-4">

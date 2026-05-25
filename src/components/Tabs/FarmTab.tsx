@@ -7,7 +7,7 @@ export default function FarmTab() {
        {/* Farm Info */}
        <div className="bg-white rounded-[24px] shadow-[0_4px_15px_rgba(0,0,0,0.02)] border border-gray-100 overflow-hidden">
          <div className="h-40 bg-gray-900 relative">
-           <img src="https://images.unsplash.com/photo-1598463878070-5b5cb38fe482?q=80&w=800&auto=format&fit=crop" alt="농장" className="w-full h-full object-cover opacity-80" />
+           <img src="/images/farm-hero.png" alt="농장" className="w-full h-full object-cover opacity-80" />
            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 to-transparent"></div>
            <div className="absolute bottom-5 left-6 text-white z-10">
              <span className="bg-[#18A049] text-white text-[11px] px-2.5 py-1 rounded-[8px] mb-2 inline-block font-extrabold shadow-sm">국내 상위 1% 전용 목장</span>
@@ -17,7 +17,7 @@ export default function FarmTab() {
          <div className="p-6">
             <div className="flex gap-4 items-start mb-6">
               <div className="w-16 h-16 rounded-full bg-gray-100 overflow-hidden shrink-0 shadow-md border-[3px] border-white -mt-10 relative z-10">
-                <img src="https://images.unsplash.com/photo-1559400262-67cc37d36fa3?w=100&auto=format&fit=crop" alt="농장주" className="w-full h-full object-cover" />
+                <img src="/images/farmer.png" alt="농장주" className="w-full h-full object-cover" />
               </div>
               <div className="pt-1">
                 <h3 className="font-extrabold text-gray-900 text-[17px]">김현우 농장주</h3>
@@ -84,12 +84,7 @@ export default function FarmTab() {
          <div className="grid grid-cols-2 gap-3 mb-6 relative z-10">
            {/* 동물복지 뱃지 */}
            <div className="bg-white border-[1.5px] border-[#18A049]/15 rounded-[20px] p-4 flex flex-col items-center justify-center text-center shadow-sm relative overflow-hidden group hover:border-[#18A049] transition-colors cursor-pointer">
-              <div className="w-14 h-14 bg-[#18A049] text-white rounded-[12px] flex flex-col items-center justify-center mb-3 shadow-[0_4px_10px_rgba(24,160,73,0.3)]">
-                 <span className="text-[14px] font-black leading-none mb-0.5">동물복지</span>
-                 <span className="text-[7.5px] font-extrabold opacity-90 tracking-tighter">(ANIMAL WELFARE)</span>
-                 <div className="w-[85%] h-[1px] bg-white/30 mt-1 mb-0.5"></div>
-                 <span className="text-[6.5px] font-extrabold opacity-90 tracking-tighter">농림축산식품부</span>
-              </div>
+              <img src="/images/badge-animal-welfare.png" alt="동물복지 인증" className="w-16 h-16 object-contain mb-3" />
               <span className="text-gray-900 font-extrabold text-[15px] mb-1.5">동물복지 인증</span>
               <div className="bg-[#E6F6ED] text-[#18A049] text-[11px] font-extrabold px-3 py-1 rounded-md">
                 상태 : 정상 유지
@@ -98,12 +93,7 @@ export default function FarmTab() {
 
            {/* 유기축산물 뱃지 */}
            <div className="bg-white border-[1.5px] border-[#18A049]/15 rounded-[20px] p-4 flex flex-col items-center justify-center text-center shadow-sm relative overflow-hidden group hover:border-[#18A049] transition-colors cursor-pointer">
-              <div className="w-14 h-14 bg-[#18A049] text-white rounded-[12px] flex flex-col items-center justify-center mb-3 shadow-[0_4px_10px_rgba(24,160,73,0.3)]">
-                 <span className="text-[13px] font-black leading-none mb-0.5">유기축산물</span>
-                 <span className="text-[7.5px] font-extrabold opacity-90 tracking-tighter">(ORGANIC)</span>
-                 <div className="w-[85%] h-[1px] bg-white/30 mt-1 mb-0.5"></div>
-                 <span className="text-[6.5px] font-extrabold opacity-90 tracking-tighter">농림축산식품부</span>
-              </div>
+              <img src="/images/badge-organic.jpg" alt="유기축산물 인증" className="w-16 h-16 object-contain mb-3" />
               <span className="text-gray-900 font-extrabold text-[15px] mb-1.5">유기축산물 인증</span>
               <div className="bg-[#E6F6ED] text-[#18A049] text-[11px] font-extrabold px-3 py-1 rounded-md">
                 상태 : 정상 유지
@@ -148,7 +138,7 @@ export default function FarmTab() {
            <PlayCircle className="w-[20px] h-[20px] text-seul-secondary" /> 이번 주 농장 이야기
          </h3>
          <div className="relative rounded-[24px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.02)] border border-gray-100 aspect-[16/9] bg-gray-900 group cursor-pointer">
-           <img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?q=80&w=800&auto=format&fit=crop" alt="영상" className="w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity duration-500" />
+           <img src="/images/farm-video-thumb.png" alt="영상" className="w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity duration-500" />
            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
            <div className="absolute inset-0 flex items-center justify-center">
              <div className="w-[52px] h-[52px] rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/40 group-hover:scale-110 transition-transform duration-300">

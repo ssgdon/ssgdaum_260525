@@ -2,8 +2,8 @@ import { Search, Star, ChevronRight, Calendar } from 'lucide-react';
 import { UserProfile } from '../../types';
 import { motion } from 'motion/react';
 
-export default function ShopTab({ userProfile }: { userProfile: UserProfile | null }) {
-  const isPregnant = userProfile?.status === 'pregnant';
+export default function ShopTab({ userProfile }: { userProfile: UserProfile }) {
+  const isPregnant = userProfile.status === 'pregnant';
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-8 pb-20 tracking-tight">
@@ -17,23 +17,29 @@ export default function ShopTab({ userProfile }: { userProfile: UserProfile | nu
          </div>
        </div>
 
-       {/* Recommendation if logged in & profile exists */}
-       {userProfile && (
-         <div className="bg-gradient-to-br from-seul-bg via-white to-seul-bg rounded-3xl p-6 border border-seul-primary/10 shadow-sm relative overflow-hidden">
+       {/* Recommendation — personalized */}
+       <div className="bg-gradient-to-br from-seul-bg via-white to-seul-bg rounded-3xl p-6 border border-seul-primary/10 shadow-sm relative overflow-hidden">
            <div className="absolute top-0 right-0 w-32 h-32 bg-seul-accent/5 rounded-full blur-2xl transform translate-x-10 -translate-y-10"></div>
-           
+
            <h3 className="font-extrabold text-gray-900 flex items-center gap-2 mb-5 relative z-10 text-[19px]">
-             <span className="text-xl">💡</span> 
-             {isPregnant ? `${userProfile.months}개월차 임산부 추천` : '나에게 딱 맞는 추천'}
+             <span className="text-xl">💡</span>
+             {isPregnant
+               ? <span>임신 <span className="text-seul-primary">{userProfile.months}개월차인</span> <span className="text-seul-primary">{userProfile.name.slice(1)}</span>님을 위한 추천</span>
+               : <span><span className="text-seul-primary">{userProfile.name.slice(1)}</span>님을 위한 맞춤 추천</span>}
            </h3>
            <div className="flex gap-4 overflow-x-auto pb-2 snap-x hide-scrollbar relative z-10">
              {[
-               { id: 1, name: 'PURE 한우 갈비탕', desc: '화학 첨가물 Zero', price: '32,000원', img: 'https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=300&auto=format&fit=crop', rating: 4.9 },
-               { id: 2, name: '무항생제 다짐육', desc: '이유식, 영양식 필수', price: '28,000원', img: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?q=80&w=300&auto=format&fit=crop', rating: 5.0 },
+               { id: 1, name: 'PURE 한우 갈비탕', desc: '화학 첨가물 Zero', price: '32,000원', img: '/images/product-galbitang.png', rating: 4.9 },
+               { id: 2, name: '100% 한우 안심 곰탕', desc: '철분·단백질 듬뿍', price: '32,000원', img: '/images/product-soup-bone.png', rating: 5.0 },
              ].map((item) => (
                 <div key={item.id} className="min-w-[160px] w-[160px] bg-white rounded-2xl shadow-sm overflow-hidden border border-white snap-start flex-shrink-0 group cursor-pointer hover:border-seul-primary/30 transition-all">
                    <div className="h-32 bg-gray-100 relative overflow-hidden">
                      <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                     {/* 인증 뱃지 (상단 좌측) */}
+                     <div className="absolute top-2 left-2 flex gap-1">
+                       <span className="bg-white/95 backdrop-blur-md text-[9.5px] font-extrabold text-[#18A049] px-1.5 py-0.5 rounded shadow-sm tracking-tight">유기농</span>
+                       <span className="bg-white/95 backdrop-blur-md text-[9.5px] font-extrabold text-[#18A049] px-1.5 py-0.5 rounded shadow-sm tracking-tight">동물복지</span>
+                     </div>
                      <div className="absolute bottom-2 left-2 bg-white/95 backdrop-blur-md text-[10px] px-1.5 py-0.5 rounded font-extrabold text-gray-800 flex items-center gap-1 shadow-sm">
                        <Star className="w-3 h-3 fill-seul-accent text-seul-accent" /> {item.rating}
                      </div>
@@ -46,8 +52,7 @@ export default function ShopTab({ userProfile }: { userProfile: UserProfile | nu
                 </div>
              ))}
            </div>
-         </div>
-       )}
+       </div>
 
        {/* Categories */}
        <div>
@@ -56,7 +61,7 @@ export default function ShopTab({ userProfile }: { userProfile: UserProfile | nu
          </div>
          <div className="flex gap-2.5 mb-6 hide-scrollbar overflow-x-auto pb-1">
            {['전체', '원육', '간편식', '선물세트', '정기구독'].map((cat, i) => (
-             <button key={cat} className={`flex-shrink-0 px-5 py-2.5 rounded-xl text-[15px] font-extrabold shadow-sm transition-colors ${i === 2 && !userProfile ? 'bg-seul-primary text-white border-none' : i === 0 && userProfile ? 'bg-seul-primary text-white border-none' : 'bg-white border-2 border-gray-100 text-gray-700 hover:border-seul-primary/50'}`}>
+             <button key={cat} className={`flex-shrink-0 px-5 py-2.5 rounded-xl text-[15px] font-extrabold shadow-sm transition-colors ${i === 0 ? 'bg-seul-primary text-white border-none' : 'bg-white border-2 border-gray-100 text-gray-700 hover:border-seul-primary/50'}`}>
                {cat}
              </button>
            ))}
@@ -88,7 +93,7 @@ export default function ShopTab({ userProfile }: { userProfile: UserProfile | nu
             {[1,2,3].map((i) => (
                <div key={i} className="flex gap-4 bg-white p-3.5 rounded-[20px] shadow-sm border border-gray-100 items-center cursor-pointer hover:border-seul-primary/50 hover:shadow-md transition-all group">
                  <div className="w-24 h-24 bg-gray-100 rounded-2xl overflow-hidden shrink-0">
-                   <img src={`https://images.unsplash.com/photo-1603048297172-c92544798d5e?q=80&w=200&auto=format&fit=crop&sig=${i}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="item" />
+                   <img src="/images/product-tenderloin.png" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="item" />
                  </div>
                  <div className="flex-1 pr-2">
                     <div className="flex gap-1.5 mb-2">

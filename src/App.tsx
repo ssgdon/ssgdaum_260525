@@ -8,16 +8,25 @@ import ShopTab from './components/Tabs/ShopTab';
 import QRTab from './components/Tabs/QRTab';
 import { TabType, UserProfile } from './types';
 
+// 로그인 흐름 제거 — 기본 진입 시 항상 로그인된 상태(임신 중기 5개월차)로 시작
+const DEFAULT_PROFILE: UserProfile = {
+  name: '김예지',
+  gender: 'female',
+  age: 32,
+  status: 'pregnant',
+  months: 5,
+};
+
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('inspection');
-  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [userProfile] = useState<UserProfile>(DEFAULT_PROFILE);
 
   const renderTab = () => {
     switch (activeTab) {
       case 'inspection':
         return <InspectionTab userProfile={userProfile} />;
       case 'for_me':
-        return <ForMeTab userProfile={userProfile} setUserProfile={setUserProfile} />;
+        return <ForMeTab userProfile={userProfile} />;
       case 'farm':
         return <FarmTab />;
       case 'shop':
